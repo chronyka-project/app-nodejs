@@ -8,6 +8,12 @@ app.use(favicon(join(__dirname, '..', 'views', 'public', 'favicon.ico')))
 app.set('views', join(__dirname, '..', 'views', 'public'))
 app.set('view engine', 'html')
 
+// Adicionar o endpoint /health para verificações do Load Balancer
+app.get('/health', (req, res) => {
+    // Responde com status 200 OK e a string 'Healthy'
+    res.status(200).send('Healthy');
+})
+
 // Enable the public directory for resource files
 app.use('/public', express.static(
   join(__dirname, '..', 'views', 'public')
